@@ -16,11 +16,6 @@ export default function HomePage() {
   const filteredPrototypes = selectedCategory 
     ? prototypes.filter(p => p.category === selectedCategory)
     : prototypes
-  
-  // Get prototype count per category
-  const getCategoryCount = (category: string) => {
-    return prototypes.filter(p => p.category === category).length
-  }
 
   return (
     <div className="min-h-screen bg-gray-50">
