@@ -328,7 +328,7 @@ export default function QuoteDetailsPage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* 4. PRODUCT LINE OPTIMIZATION - Updated with subtle header */}
           <div className="lg:col-span-2">
-            <Card className="overflow-hidden">
+            <Card className="overflow-hidden pt-0">
               <CardHeader className="bg-slate-50 border-b border-slate-200 pt-6 pb-4">
                 <div className="flex justify-between items-center">
                   <div className="flex items-center gap-3">

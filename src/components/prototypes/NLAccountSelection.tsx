@@ -138,7 +138,7 @@ const NLAccountSelection = () => {
               <div className="bg-amber-100 border border-amber-300 rounded-lg p-4 flex items-start space-x-3">
                 <AlertTriangle className="w-5 h-5 text-amber-700 flex-shrink-0 mt-0.5" />
                 <div className="text-sm text-amber-900">
-                  <strong>Deze optie is momenteel niet beschikbaar voor klanten uit België en Luxembourg.</strong> Neem contact op met uw vestiging
+                  Deze optie is momenteel niet beschikbaar voor klanten uit <strong>België en Luxembourg.</strong> Neem contact op met uw vestiging
                 </div>
               </div>
             </div>

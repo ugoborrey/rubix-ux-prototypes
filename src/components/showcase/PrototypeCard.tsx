@@ -126,7 +126,7 @@ export default function PrototypeCard({ prototype }: PrototypeCardProps) {
             size="sm" 
             className={`flex-1 ${
               isReadyForReview 
-                ? 'bg-green-600 hover:bg-green-700 text-white shadow-md' 
+                ? 'bg-green-700 hover:bg-green-800 text-white shadow-md' 
                 : 'bg-blue-600 hover:bg-blue-700 text-white'
             }`}
             asChild

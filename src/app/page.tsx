@@ -51,38 +51,6 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Enhanced Category Filter */}
-        <div className="mb-6">
-          <h3 className="text-lg font-semibold text-slate-800 mb-3">Filter by Category</h3>
-          <div className="flex flex-wrap gap-2">
-            <Badge 
-              variant={selectedCategory === null ? "default" : "secondary"}
-              className={`px-3 py-1 text-sm cursor-pointer transition-colors ${
-                selectedCategory === null 
-                  ? "bg-blue-600 text-white hover:bg-blue-700" 
-                  : "bg-white border-slate-200 text-slate-700 hover:bg-slate-50"
-              }`}
-              onClick={() => setSelectedCategory(null)}
-            >
-              All ({totalPrototypes})
-            </Badge>
-            {categories.map((category) => (
-              <Badge 
-                key={category}
-                variant={selectedCategory === category ? "default" : "secondary"}
-                className={`px-3 py-1 text-sm cursor-pointer transition-colors ${
-                  selectedCategory === category 
-                    ? "bg-blue-600 text-white hover:bg-blue-700" 
-                    : "bg-white border-slate-200 text-slate-700 hover:bg-slate-50"
-                }`}
-                onClick={() => setSelectedCategory(category)}
-              >
-                {category} ({getCategoryCount(category)})
-              </Badge>
-            ))}
-          </div>
-        </div>
-
         {/* Prototypes Grid - Now More Prominent */}
         <div className="mb-6">
           <div className="flex items-center justify-between mb-4">
@@ -92,6 +60,35 @@ export default function HomePage() {
                 ({filteredPrototypes.length})
               </span>
             </h2>
+            
+            {/* Filter buttons aligned to the right */}
+            <div className="flex flex-wrap gap-2">
+              <Badge 
+                variant={selectedCategory === null ? "default" : "secondary"}
+                className={`px-3 py-1 text-sm cursor-pointer transition-colors ${
+                  selectedCategory === null 
+                    ? "bg-blue-600 text-white hover:bg-blue-700" 
+                    : "bg-white border-slate-200 text-slate-700 hover:bg-slate-50"
+                }`}
+                onClick={() => setSelectedCategory(null)}
+              >
+                All
+              </Badge>
+              {categories.map((category) => (
+                <Badge 
+                  key={category}
+                  variant={selectedCategory === category ? "default" : "secondary"}
+                  className={`px-3 py-1 text-sm cursor-pointer transition-colors ${
+                    selectedCategory === category 
+                      ? "bg-blue-600 text-white hover:bg-blue-700" 
+                      : "bg-white border-slate-200 text-slate-700 hover:bg-slate-50"
+                  }`}
+                  onClick={() => setSelectedCategory(category)}
+                >
+                  {category}
+                </Badge>
+              ))}
+            </div>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

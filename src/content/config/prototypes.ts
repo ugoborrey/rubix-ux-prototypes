@@ -8,7 +8,7 @@ export const prototypes: PrototypeMetadata[] = [
     slug: 'quote-details',
     title: 'Quote Details Redesign',
     category: 'Quotation',
-    status: 'Ready for Review',
+    status: 'In Progress',
     description: 'Redesigned quote interface focusing on improved information architecture and user workflows with better product selection and modification capabilities.',
     tags: ['e-commerce', 'b2b', 'dashboard', 'responsive'],
     created: '2024-01-15',
