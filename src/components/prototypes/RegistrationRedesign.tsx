@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Alert, AlertDescription } from "@/components/ui/alert"
+
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import {
@@ -190,7 +190,7 @@ const Step1 = ({ selectedOption, setSelectedOption, showDetails, animateIn, setC
                         <CardHeader>
                           <CardTitle className="text-lg flex items-center text-slate-900">
                             <Star className="w-5 h-5 mr-2" style={{ color: "#FFD700" }} />
-                            Dès aujourd'hui
+                            Dès aujourd&apos;hui
                           </CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-3">
@@ -237,8 +237,8 @@ const Step1 = ({ selectedOption, setSelectedOption, showDetails, animateIn, setC
                     <div className="flex items-start gap-3 rounded-lg border border-blue-200 bg-blue-50 px-4 py-3 text-sm">
                       <Info className="h-4 w-4 text-blue-600 flex-shrink-0 mt-0.5" />
                       <div className="text-slate-700">
-                      <strong>L'évolution vers un compte client</strong> se fait naturellement selon votre volume
-                      d'activité, vos besoins et nos critères commerciaux. Pour plus d'informations, contactez-nous à l'adresse <a href="mailto:contact@rubix.fr" className="text-blue-600 hover:text-blue-700">contact@rubix.fr</a>
+                                              <strong>L&apos;évolution vers un compte client</strong> se fait naturellement selon votre volume
+                       d&apos;activité, vos besoins et nos critères commerciaux. Pour plus d&apos;informations, contactez-nous à l&apos;adresse <a href="mailto:contact@rubix.fr" className="text-blue-600 hover:text-blue-700">contact@rubix.fr</a>
                       </div>
                     </div>
 
@@ -293,7 +293,7 @@ const Step1 = ({ selectedOption, setSelectedOption, showDetails, animateIn, setC
                           </div>
                           <div className="flex items-center space-x-3">
                             <CheckCircle className="w-5 h-5 text-emerald-600" />
-                            <span className="text-sm text-emerald-800"><strong>Gestion collaborative</strong> - Gérez vos équipes avec workflows d'approbation et droits d'accès</span>
+                                                          <span className="text-sm text-emerald-800"><strong>Gestion collaborative</strong> - Gérez vos équipes avec workflows d&apos;approbation et droits d&apos;accès</span>
                           </div>
                           <div className="flex items-center space-x-3">
                             <CheckCircle className="w-5 h-5 text-emerald-600" />
@@ -442,7 +442,7 @@ const Step2Discovery = ({
                     <Input
                       id="company-search"
                       type="text"
-                      placeholder="Nom de l'entreprise..."
+                      placeholder="Nom de l&apos;entreprise..."
                       value={searchForm.companyName}
                       onChange={(e) => handleInputChange("companyName", e.target.value)}
                       className="pl-11 h-12 border-slate-300 focus:border-blue-500 focus:ring-blue-500"
@@ -543,7 +543,7 @@ const Step2Discovery = ({
               <div className="border-t pt-6">
                 <div className="rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm mb-4">
                   <div className="text-amber-800">
-                    <span className="font-bold">Aucune entreprise trouvée</span> avec ces critères. Vérifiez l'orthographe du nom ou
+                    <span className="font-bold">Aucune entreprise trouvée</span> avec ces critères. Vérifiez l&apos;orthographe du nom ou
                     essayez avec un département différent.
                   </div>
                 </div>
