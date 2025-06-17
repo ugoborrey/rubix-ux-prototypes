@@ -3,7 +3,6 @@
 import { prototypes } from '@/content/config/prototypes'
 import PrototypeCard from '@/components/showcase/PrototypeCard'
 import { Badge } from '@/components/ui/badge'
-import { Search } from 'lucide-react'
 import { useState } from 'react'
 
 export default function HomePage() {
