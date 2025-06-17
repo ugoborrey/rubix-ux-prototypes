@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Button } from '@/components/ui/button'
-import { ArrowLeft, ExternalLink, Share2, Copy, Check } from 'lucide-react'
+import { ArrowLeft, Share2, Check } from 'lucide-react'
 import { useState } from 'react'
 
 interface SiteHeaderProps {
@@ -33,8 +33,10 @@ export default function SiteHeader({
   const ShareButton = () => {
     if (!pathname.startsWith('/showcase/')) return null
     
+    // Check if we're on the client side before accessing window
+    if (typeof window === 'undefined') return null
+    
     const contextUrl = window.location.href
-    const demoUrl = contextUrl.replace('/showcase/', '/demo/')
     
     return (
       <div className="relative">
