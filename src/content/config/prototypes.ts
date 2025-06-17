@@ -1,5 +1,6 @@
 import { PrototypeMetadata } from '@/lib/types'
 import QuoteDetailsPage from '@/components/prototypes/QuoteDetailsPage'
+import RegistrationRedesign from '@/components/prototypes/RegistrationRedesign'
 
 export const prototypes: PrototypeMetadata[] = [
   {
@@ -13,6 +14,17 @@ export const prototypes: PrototypeMetadata[] = [
     updated: '2024-01-20',
     screenshot: '/screenshots/quote-details.png',
     component: QuoteDetailsPage
+  },
+  {
+    slug: 'registration-redesign',
+    title: 'Registration Flow Redesign',
+    category: 'Registration',
+    status: 'Ready for Review',
+    description: 'Complete redesign of the registration process with intelligent user journey branching for discovery vs. existing clients, enhanced company search, and streamlined account creation flow.',
+    tags: ['onboarding', 'user-flow', 'b2b', 'responsive', 'multi-step'],
+    created: '2024-01-22',
+    updated: '2024-01-22',
+    component: RegistrationRedesign
   }
   // Additional prototypes will be added here as they're created
 ]

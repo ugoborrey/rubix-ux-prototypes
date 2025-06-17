@@ -1,0 +1,136 @@
+---
+title: 'Registration Flow Redesign'
+category: 'Registration'
+status: 'Ready for Review'
+description: 'Complete redesign of the registration process with intelligent user journey branching for discovery vs. existing clients, enhanced company search, and streamlined account creation flow.'
+tags: ['onboarding', 'user-flow', 'b2b', 'responsive', 'multi-step']
+created: '2024-01-22'
+updated: '2024-01-22'
+---
+
+# Registration Flow Redesign
+
+## Problem Statement
+
+The current registration process at Rubix can be complex and doesn't adequately differentiate between new discovery clients and existing customers who need web access. This leads to:
+
+- **Confusion for new users** who don't understand the different account types available
+- **Friction for existing clients** who need to connect their web access to existing business relationships
+- **Poor conversion rates** due to unclear value propositions and complex forms
+- **Support burden** from users who can't complete registration successfully
+
+## Design Decisions
+
+### 1. Progressive Disclosure
+Instead of overwhelming users with all options upfront, we use a step-by-step approach that reveals information contextually as needed.
+
+### 2. Journey Differentiation
+The redesign creates two distinct paths:
+- **Discovery Journey**: For new potential clients who need immediate catalog access
+- **Existing Client Journey**: For established customers connecting their web access
+
+### 3. Value-First Approach
+Each path clearly communicates the benefits and evolution possibilities rather than focusing solely on account requirements.
+
+### 4. Enhanced Company Search
+Integration with CreditSafe API provides real-time company verification and reduces form friction through intelligent auto-completion.
+
+## Key Features
+
+### Smart Path Selection
+- Clear visual differentiation between "first time" and "existing client" options
+- Contextual information that helps users self-select the right path
+- Smooth transitions with animated reveals to maintain engagement
+
+### Account Type Education
+- **Discovery Account**: Immediate access with evolution potential explained
+- **Client Account**: Premium benefits clearly highlighted
+- Future-focused messaging that positions discovery as a natural starting point
+
+### Company Search & Verification
+- Real-time search functionality with department-based filtering  
+- Multiple result matching to handle various company name variations
+- Clear company information display with SIRET verification
+- Fallback options for companies not found in the database
+
+### Responsive Design
+- Mobile-first approach ensuring smooth experience across all devices
+- Progressive enhancement for larger screens
+- Touch-friendly interface elements
+
+## User Journey
+
+### Step 1: Path Selection
+1. Welcome screen with clear Rubix branding
+2. Central question: "Does your company already work with Rubix?"
+3. Two distinct call-to-action buttons with different visual treatments
+4. Login link for existing web users
+
+### Step 2a: Discovery Path
+1. Company search form with real-time validation
+2. Department-based filtering for improved results
+3. Company selection from verified results
+4. Clear next steps toward account creation
+
+### Step 2b: Existing Client Path
+1. Account number input with helpful hints
+2. SIRET verification for security
+3. Automatic account linkage validation
+4. Streamlined access to existing benefits
+
+## Technical Implementation
+
+### React Architecture
+- Modular component design with clear separation of concerns
+- Custom hooks for search functionality and form management
+- TypeScript interfaces for type safety and developer experience
+
+### State Management
+- Local state for form data and search results
+- Efficient re-rendering with useCallback optimization
+- Progressive form validation with clear error states
+
+### API Integration
+- Mock CreditSafe integration for company search
+- Debounced search to optimize API calls
+- Error handling for network issues and API failures
+
+### Accessibility
+- Proper ARIA labels and screen reader support
+- Keyboard navigation throughout the flow
+- High contrast color schemes for visual accessibility
+
+## Stakeholder Feedback
+
+*This section will be updated as stakeholder reviews are completed.*
+
+### UX Review
+- [ ] User flow validation
+- [ ] Accessibility audit
+- [ ] Mobile experience testing
+
+### Business Review  
+- [ ] Value proposition messaging
+- [ ] Account type positioning
+- [ ] Legal compliance review
+
+### Technical Review
+- [ ] API integration feasibility
+- [ ] Performance optimization
+- [ ] Security considerations
+
+## Next Steps
+
+1. **Stakeholder Review**: Present to key stakeholders for feedback
+2. **User Testing**: Conduct usability tests with real users from both paths
+3. **API Integration**: Implement real CreditSafe API connection
+4. **A/B Testing**: Compare new flow against current registration
+5. **Incremental Rollout**: Gradual deployment with success metrics tracking
+
+## Success Metrics
+
+- **Conversion Rate**: % of users who complete registration
+- **Path Distribution**: Balance between discovery and existing client flows
+- **Time to Complete**: Average time from start to finish
+- **Support Tickets**: Reduction in registration-related support requests
+- **User Satisfaction**: Post-registration survey scores 
