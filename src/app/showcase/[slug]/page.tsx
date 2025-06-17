@@ -5,7 +5,7 @@ import { getPrototypeContent } from '@/lib/content'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { ExternalLink, Calendar, Tag } from 'lucide-react'
+import { ExternalLink, Calendar, Tag, ChevronLeft } from 'lucide-react'
 import { getCategoryIcon, getStatusColor } from '@/lib/content'
 import Link from 'next/link'
 
@@ -31,34 +31,59 @@ export default async function ShowcasePage({ params }: ShowcasePageProps) {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-6 py-8">
+        {/* Back to Prototypes Link */}
+        <div className="mb-6">
+          <Link 
+            href="/" 
+            className="inline-flex items-center text-slate-600 hover:text-blue-600 transition-colors duration-200 group"
+          >
+            <ChevronLeft className="w-4 h-4 mr-1 group-hover:-translate-x-0.5 transition-transform duration-200" />
+            <span className="text-sm font-medium">Back to prototypes</span>
+          </Link>
+        </div>
+
         {/* Header */}
         <div className="mb-8">
-          <div className="flex items-center gap-3 mb-4">
-            <span className="text-3xl">{categoryIcon}</span>
-            <div>
-              <h1 className="text-3xl font-bold text-slate-800">{prototype.title}</h1>
-              <div className="flex items-center gap-4 mt-2">
-                <Badge variant="secondary" className="text-sm">
-                  {prototype.category}
-                </Badge>
-                <Badge 
-                  className={`${statusColors.bg} ${statusColors.text} ${statusColors.border} border`}
-                  variant="outline"
-                >
-                  {prototype.status}
-                </Badge>
-                <div className="flex items-center gap-1 text-sm text-slate-500">
-                  <Calendar className="w-4 h-4" />
-                  Updated {new Date(prototype.updated).toLocaleDateString()}
+          <div className="flex items-start justify-between mb-4">
+            <div className="flex items-center gap-3">
+              <span className="text-3xl">{categoryIcon}</span>
+              <div>
+                <h1 className="text-3xl font-bold text-slate-800">{prototype.title}</h1>
+                <div className="flex items-center gap-4 mt-2">
+                  <Badge variant="secondary" className="text-sm">
+                    {prototype.category}
+                  </Badge>
+                  <Badge 
+                    className={`${statusColors.bg} ${statusColors.text} ${statusColors.border} border`}
+                    variant="outline"
+                  >
+                    {prototype.status}
+                  </Badge>
+                  <div className="flex items-center gap-1 text-sm text-slate-500">
+                    <Calendar className="w-4 h-4" />
+                    Updated {new Date(prototype.updated).toLocaleDateString()}
+                  </div>
                 </div>
               </div>
             </div>
+            
+            {/* View Full Demo Button - moved to top right */}
+            <Button 
+              size="lg"
+              className="bg-blue-600 hover:bg-blue-700 text-white"
+              asChild
+            >
+              <Link href={`/demo/${prototype.slug}`}>
+                <ExternalLink className="w-5 h-5 mr-2" />
+                View Full Demo
+              </Link>
+            </Button>
           </div>
           
           <p className="text-lg text-slate-600 mb-6">{prototype.description}</p>
           
           {/* Tags */}
-          <div className="flex flex-wrap gap-2 mb-6">
+          <div className="flex flex-wrap gap-2">
             {prototype.tags.map((tag) => (
               <Badge 
                 key={tag} 
@@ -70,18 +95,6 @@ export default async function ShowcasePage({ params }: ShowcasePageProps) {
               </Badge>
             ))}
           </div>
-
-          {/* Action Button */}
-          <Button 
-            size="lg"
-            className="bg-blue-600 hover:bg-blue-700 text-white"
-            asChild
-          >
-            <Link href={`/demo/${prototype.slug}`}>
-              <ExternalLink className="w-5 h-5 mr-2" />
-              View Full Demo
-            </Link>
-          </Button>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">

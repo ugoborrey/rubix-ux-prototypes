@@ -40,17 +40,19 @@ export default function PrototypeCard({ prototype }: PrototypeCardProps) {
 
       <CardContent className="space-y-4">
         {/* Interactive Prototype Preview */}
-        <div className="aspect-video bg-gradient-to-br from-slate-100 to-slate-200 rounded-lg border border-slate-200 overflow-hidden relative group/preview">
-          <div className="transform scale-[0.4] origin-top-left w-[250%] h-[250%] pointer-events-none">
-            <PrototypeComponent />
-          </div>
-          {/* Overlay to show it's a preview */}
-          <div className="absolute inset-0 bg-white/40 backdrop-blur-[0.5px] opacity-0 group-hover/preview:opacity-100 transition-opacity duration-200 flex items-center justify-center">
-            <div className="bg-white/90 backdrop-blur-sm rounded-lg px-3 py-2 shadow-lg border border-slate-200">
-              <span className="text-sm font-medium text-slate-700">Click to explore</span>
+        <Link href={`/showcase/${prototype.slug}`} className="block">
+          <div className="aspect-video bg-gradient-to-br from-slate-100 to-slate-200 rounded-lg border border-slate-200 overflow-hidden relative group/preview cursor-pointer">
+            <div className="transform scale-[0.4] origin-top-left w-[250%] h-[250%] pointer-events-none">
+              <PrototypeComponent />
+            </div>
+            {/* Overlay to show it's a preview */}
+            <div className="absolute inset-0 bg-white/40 backdrop-blur-[0.5px] opacity-0 group-hover/preview:opacity-100 transition-opacity duration-200 flex items-center justify-center">
+              <div className="bg-white/90 backdrop-blur-sm rounded-lg px-3 py-2 shadow-lg border border-slate-200">
+                <span className="text-sm font-medium text-slate-700">Click to explore</span>
+              </div>
             </div>
           </div>
-        </div>
+        </Link>
 
         {/* Description */}
         <p className="text-sm text-slate-600 leading-relaxed line-clamp-3">
