@@ -3,7 +3,8 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Button } from '@/components/ui/button'
-import { ArrowLeft, ExternalLink } from 'lucide-react'
+import { ArrowLeft, ExternalLink, Share2, Copy, Check } from 'lucide-react'
+import { useState } from 'react'
 
 interface SiteHeaderProps {
   showBackButton?: boolean
@@ -17,22 +18,71 @@ export default function SiteHeader({
   prototypeTitle 
 }: SiteHeaderProps) {
   const pathname = usePathname()
+  const [copiedUrl, setCopiedUrl] = useState<string | null>(null)
   
-  if (demoMode) {
-    // Minimal header for demo mode
+  const copyToClipboard = async (url: string, type: string) => {
+    try {
+      await navigator.clipboard.writeText(url)
+      setCopiedUrl(type)
+      setTimeout(() => setCopiedUrl(null), 2000)
+    } catch (err) {
+      console.error('Failed to copy: ', err)
+    }
+  }
+
+  const ShareButton = () => {
+    if (!pathname.startsWith('/showcase/')) return null
+    
+    const contextUrl = window.location.href
+    const demoUrl = contextUrl.replace('/showcase/', '/demo/')
+    
     return (
-      <div className="fixed top-4 left-4 z-50">
+      <div className="relative">
         <Button
           variant="outline"
           size="sm"
-          className="bg-white/90 backdrop-blur-sm shadow-lg border-slate-200 text-slate-700 hover:bg-white hover:text-slate-900"
-          asChild
+          className="border-slate-200 text-slate-700 hover:bg-slate-50"
+          onClick={() => {
+            // Simple click handler - copy context URL by default
+            copyToClipboard(contextUrl, 'context')
+          }}
         >
-          <Link href={`/showcase${pathname.replace('/demo', '')}`}>
-            <ArrowLeft className="w-4 h-4 mr-1" />
-            Back to Context
-          </Link>
+          {copiedUrl ? (
+            <>
+              <Check className="w-4 h-4 mr-2 text-green-600" />
+              <span className="text-green-600">Copied!</span>
+            </>
+          ) : (
+            <>
+              <Share2 className="w-4 h-4 mr-2" />
+              Share
+            </>
+          )}
         </Button>
+        
+        {/* TODO: Could add a dropdown for context vs demo URL options in the future */}
+      </div>
+    )
+  }
+
+  if (demoMode) {
+    // Minimal floating button for demo mode
+    return (
+      <div className="fixed top-4 left-4 z-50">
+        <Link href={`/showcase${pathname.replace('/demo', '')}`}>
+          <div className="bg-white/90 backdrop-blur-sm shadow-lg border border-slate-200 rounded-lg p-3 hover:bg-white hover:shadow-xl transition-all duration-200 cursor-pointer">
+            <div className="flex items-center gap-2 mb-1">
+              <ArrowLeft className="w-4 h-4 text-slate-700" />
+              <span className="text-sm font-medium text-slate-700">Back to context</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-4 h-4 bg-gradient-to-br from-blue-600 to-purple-600 rounded flex items-center justify-center">
+                <span className="text-white font-bold text-xs">R</span>
+              </div>
+              <span className="text-xs text-slate-500">Rubix UX Prototypes</span>
+            </div>
+          </div>
+        </Link>
       </div>
     )
   }
@@ -69,20 +119,7 @@ export default function SiteHeader({
                 <div className="text-xs text-slate-600">Prototype Context</div>
               </div>
             )}
-            
-            {pathname.startsWith('/showcase/') && (
-              <Button
-                variant="outline"
-                size="sm"
-                className="border-blue-200 text-blue-700 hover:bg-blue-50"
-                asChild
-              >
-                <Link href={pathname.replace('/showcase', '/demo')}>
-                  <ExternalLink className="w-4 h-4 mr-2" />
-                  View Demo
-                </Link>
-              </Button>
-            )}
+            <ShareButton />
           </div>
         </div>
       </div>
