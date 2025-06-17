@@ -24,6 +24,7 @@ export interface PrototypeMetadata {
   updated: string
   screenshot?: string
   component: React.ComponentType
+  teamsLink?: string
 }
 
 export interface PrototypeFrontmatter {
@@ -35,4 +36,5 @@ export interface PrototypeFrontmatter {
   created: string
   updated: string
   screenshot?: string
+  teamsLink?: string
 } 

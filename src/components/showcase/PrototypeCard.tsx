@@ -2,9 +2,10 @@ import Link from 'next/link'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { ExternalLink, Calendar, Tag } from 'lucide-react'
+import { ExternalLink, Calendar, Tag, Eye } from 'lucide-react'
 import { PrototypeMetadata } from '@/lib/types'
-import { getCategoryIcon, getStatusColor } from '@/lib/content'
+import { getCategoryIcon, getStatusColor } from '@/lib/utils'
+import { TeamsIcon } from '@/components/ui/teams-icon'
 
 interface PrototypeCardProps {
   prototype: PrototypeMetadata
@@ -14,9 +15,12 @@ export default function PrototypeCard({ prototype }: PrototypeCardProps) {
   const statusColors = getStatusColor(prototype.status)
   const categoryIcon = getCategoryIcon(prototype.category)
   const PrototypeComponent = prototype.component
+  const isReadyForReview = prototype.status === 'Ready for Review'
 
   return (
-    <Card className="group hover:shadow-lg transition-all duration-200 border-slate-200 hover:border-slate-300">
+    <Card className={`group hover:shadow-lg transition-all duration-200 border-slate-200 hover:border-slate-300 ${
+      isReadyForReview ? 'ring-2 ring-green-200 border-green-300' : ''
+    }`}>
       <CardHeader className="pb-3">
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-2">
@@ -26,7 +30,9 @@ export default function PrototypeCard({ prototype }: PrototypeCardProps) {
             </Badge>
           </div>
           <Badge 
-            className={`${statusColors.bg} ${statusColors.text} ${statusColors.border} border text-xs`}
+            className={`${statusColors.bg} ${statusColors.text} ${statusColors.border} border text-xs ${
+              isReadyForReview ? 'ring-1 ring-green-400 animate-pulse' : ''
+            }`}
             variant="outline"
           >
             {prototype.status}
@@ -36,6 +42,29 @@ export default function PrototypeCard({ prototype }: PrototypeCardProps) {
         <CardTitle className="text-lg text-slate-800 group-hover:text-blue-600 transition-colors">
           {prototype.title}
         </CardTitle>
+        
+        {/* Ready for Review Call-to-Action */}
+        {isReadyForReview && (
+          <div className="bg-green-50 border border-green-200 rounded-lg p-3 mt-2">
+            <div className="flex items-center gap-2 mb-2">
+              <Eye className="w-4 h-4 text-green-600" />
+              <span className="text-sm font-medium text-green-800">Ready for stakeholder review</span>
+            </div>
+            {prototype.teamsLink && (
+              <Button
+                size="sm"
+                variant="outline"
+                className="bg-white border-[#6264A7] text-[#6264A7] hover:bg-[#6264A7] hover:text-white text-xs transition-colors"
+                asChild
+              >
+                <a href={prototype.teamsLink} target="_blank" rel="noopener noreferrer">
+                  <TeamsIcon className="mr-1" size={12} />
+                  Join Teams Discussion
+                </a>
+              </Button>
+            )}
+          </div>
+        )}
       </CardHeader>
 
       <CardContent className="space-y-4">
@@ -95,11 +124,15 @@ export default function PrototypeCard({ prototype }: PrototypeCardProps) {
         <div className="flex gap-2 pt-2">
           <Button 
             size="sm" 
-            className="flex-1 bg-blue-600 hover:bg-blue-700 text-white"
+            className={`flex-1 ${
+              isReadyForReview 
+                ? 'bg-green-600 hover:bg-green-700 text-white shadow-md' 
+                : 'bg-blue-600 hover:bg-blue-700 text-white'
+            }`}
             asChild
           >
             <Link href={`/showcase/${prototype.slug}`}>
-              View Context
+              {isReadyForReview ? 'Review Now' : 'View Context'}
             </Link>
           </Button>
           <Button 

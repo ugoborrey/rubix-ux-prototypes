@@ -1,0 +1,116 @@
+---
+title: "NL Account Selection Alert"
+description: "Netherlands-specific registration flow with contextual alert banners for improved user guidance and geographic restrictions"
+category: "Registration"
+status: "Ready for Review"
+created: "2024-01-25"
+updated: "2024-01-25"
+tags: ["localization", "registration", "alerts", "user-flow", "b2b"]
+---
+
+# NL Account Selection Alert
+
+## Overview
+
+This prototype enhances the Dutch webshop registration experience by adding contextual alert banners that appear based on the user's account type selection. The implementation addresses geographic restrictions and provides clearer guidance for different user types accessing the Netherlands webshop.
+
+## Key Features
+
+### Dynamic Alert System
+- **Geographic Restriction Alert**: Automatically displays when users select the direct payment option, warning that the service is not available for customers in Belgium and Luxembourg
+- **Contextual Messaging**: Alert content is specifically tailored to the Dutch market and business context
+- **Smooth Animations**: Alerts slide in naturally when triggered by user selections
+
+### Account Type Selection
+Two distinct pathways based on customer relationship:
+
+1. **Existing Customer Path**
+   - Dedicated form for business account number and VAT information
+   - Clear instructions referencing where to find account numbers (invoices)
+   - Streamlined process for existing business relationships
+
+2. **New Customer Path**  
+   - Enhanced company search functionality
+   - Geographic restriction alert for Belgium/Luxembourg
+   - Benefits listing with green checkmarks for visual clarity
+   - Company search with postcode filtering
+
+### Visual Design Improvements
+- **Card-based Selection**: Clean, clickable cards with radio button styling
+- **Progressive Disclosure**: Content reveals based on selection
+- **Status Indicators**: Visual feedback for selected states
+- **Dutch Language Integration**: Authentic Dutch copy throughout
+
+## User Experience Flow
+
+### Step 1: Account Type Selection
+Users choose between two clear options presented as interactive cards:
+- Existing Rubix customer seeking webshop access
+- New customer wanting direct payment options
+
+### Step 2: Conditional Content Display
+Based on selection, users see:
+- **Existing Customers**: Business details form with account linking
+- **New Customers**: Alert banner + company search interface
+
+### Step 3: Geographic Validation
+For new customers, the system immediately displays location-based restrictions to prevent failed registrations later in the process.
+
+## Technical Implementation
+
+### State Management
+- React useState hooks for form data and selection states
+- Dynamic form field reset when switching account types
+- Conditional rendering based on user selections
+
+### Animation System
+- CSS transitions for smooth state changes
+- Tailwind animate classes for reveal animations
+- Consistent 300ms timing for professional feel
+
+### Form Validation
+- Required field indicators with asterisks
+- Helper text for business account number location
+- Placeholder text in Dutch for localization
+
+## Design Rationale
+
+### Why This Approach?
+1. **Early Problem Prevention**: Geographic restrictions shown immediately rather than at payment
+2. **Reduced Support Load**: Clear instructions reduce customer service inquiries
+3. **Improved Conversion**: Users understand requirements upfront
+4. **Market Localization**: Authentic Dutch business terminology and processes
+
+### Alert Banner Design
+- **Amber Color Scheme**: Warning-level urgency without being alarming
+- **Icon Usage**: Triangle warning icon for immediate visual recognition
+- **Actionable Text**: Includes next steps (contact local office)
+- **Non-blocking**: Informational rather than preventing progress
+
+## Business Impact
+
+### User Benefits
+- Clearer understanding of service availability
+- Reduced form abandonment due to geographic restrictions
+- Faster completion for existing customers
+- Improved trust through transparent communication
+
+### Business Benefits
+- Reduced customer service inquiries about geographic restrictions
+- Better data quality through upfront validation
+- Improved conversion rates through clearer user paths
+- Enhanced brand perception through thoughtful UX
+
+## Future Enhancements
+
+### Potential Additions
+- Integration with actual geographic IP detection
+- Dynamic contact information based on user location
+- A/B testing of alert message variations
+- Multi-language support for other EU markets
+
+### Technical Considerations
+- API integration for real-time business data validation
+- Enhanced accessibility features for screen readers
+- Performance optimization for mobile devices
+- Analytics tracking for conversion funnel analysis 

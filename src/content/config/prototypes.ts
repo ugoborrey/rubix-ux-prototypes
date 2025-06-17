@@ -1,6 +1,7 @@
 import { PrototypeMetadata } from '@/lib/types'
 import QuoteDetailsPage from '@/components/prototypes/QuoteDetailsPage'
 import RegistrationRedesign from '@/components/prototypes/RegistrationRedesign'
+import NLAccountSelection from '@/components/prototypes/NLAccountSelection'
 
 export const prototypes: PrototypeMetadata[] = [
   {
@@ -24,7 +25,19 @@ export const prototypes: PrototypeMetadata[] = [
     tags: ['onboarding', 'user-flow', 'b2b', 'responsive', 'multi-step'],
     created: '2024-01-22',
     updated: '2024-01-22',
-    component: RegistrationRedesign
+    component: RegistrationRedesign,
+    teamsLink: 'https://teams.microsoft.com/l/message/19:cac5d94805574733812360db7f8fb72a@thread.v2/1746519361388?context=%7B%22contextType%22%3A%22chat%22%7D'
+  },
+  {
+    slug: 'nl-account-selection',
+    title: 'NL Account Selection Alert',
+    category: 'Registration',
+    status: 'Ready for Review',
+    description: 'Netherlands-specific registration flow with contextual alert banners for improved user guidance and geographic restrictions. Features dynamic alerts and localized account type selection.',
+    tags: ['localization', 'registration', 'alerts', 'user-flow', 'b2b', 'netherlands'],
+    created: '2024-01-25',
+    updated: '2024-01-25',
+    component: NLAccountSelection
   }
   // Additional prototypes will be added here as they're created
 ]

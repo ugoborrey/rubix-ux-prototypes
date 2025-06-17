@@ -1,18 +1,33 @@
+'use client'
+
 import { prototypes } from '@/content/config/prototypes'
 import PrototypeCard from '@/components/showcase/PrototypeCard'
 import { Badge } from '@/components/ui/badge'
 import { Search } from 'lucide-react'
+import { useState } from 'react'
 
 export default function HomePage() {
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
+  
   const totalPrototypes = prototypes.length
   const readyForReview = prototypes.filter(p => p.status === 'Ready for Review').length
   const categories = Array.from(new Set(prototypes.map(p => p.category)))
+  
+  // Filter prototypes based on selected category
+  const filteredPrototypes = selectedCategory 
+    ? prototypes.filter(p => p.category === selectedCategory)
+    : prototypes
+  
+  // Get prototype count per category
+  const getCategoryCount = (category: string) => {
+    return prototypes.filter(p => p.category === category).length
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-6 py-6">
         {/* Compact Hero Section */}
-        <div className="text-center mb-6">
+        <div className="text-center mb-4">
           <h1 className="text-2xl font-bold text-slate-800 mb-2">
             Welcome to Rubix UX Prototypes
           </h1>
@@ -21,7 +36,7 @@ export default function HomePage() {
           </p>
           
           {/* Compact Stats */}
-          <div className="flex justify-center gap-6 mb-4">
+          <div className="flex justify-center gap-6 mb-3">
             <div className="text-center">
               <div className="text-xl font-bold text-blue-600">{totalPrototypes}</div>
               <div className="text-xs text-slate-600">Prototypes</div>
@@ -37,42 +52,69 @@ export default function HomePage() {
           </div>
         </div>
 
+        {/* Enhanced Category Filter */}
+        <div className="mb-6">
+          <h3 className="text-lg font-semibold text-slate-800 mb-3">Filter by Category</h3>
+          <div className="flex flex-wrap gap-2">
+            <Badge 
+              variant={selectedCategory === null ? "default" : "secondary"}
+              className={`px-3 py-1 text-sm cursor-pointer transition-colors ${
+                selectedCategory === null 
+                  ? "bg-blue-600 text-white hover:bg-blue-700" 
+                  : "bg-white border-slate-200 text-slate-700 hover:bg-slate-50"
+              }`}
+              onClick={() => setSelectedCategory(null)}
+            >
+              All ({totalPrototypes})
+            </Badge>
+            {categories.map((category) => (
+              <Badge 
+                key={category}
+                variant={selectedCategory === category ? "default" : "secondary"}
+                className={`px-3 py-1 text-sm cursor-pointer transition-colors ${
+                  selectedCategory === category 
+                    ? "bg-blue-600 text-white hover:bg-blue-700" 
+                    : "bg-white border-slate-200 text-slate-700 hover:bg-slate-50"
+                }`}
+                onClick={() => setSelectedCategory(category)}
+              >
+                {category} ({getCategoryCount(category)})
+              </Badge>
+            ))}
+          </div>
+        </div>
+
         {/* Prototypes Grid - Now More Prominent */}
         <div className="mb-6">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-xl font-semibold text-slate-800">All Prototypes</h2>
-            <div className="flex gap-2">
-              <div className="text-sm text-slate-500 flex items-center gap-1">
-                <Search className="w-4 h-4" />
-                Search & Filter coming soon
-              </div>
-            </div>
+            <h2 className="text-xl font-semibold text-slate-800">
+              {selectedCategory ? `${selectedCategory} Prototypes` : 'All Prototypes'}
+              <span className="text-sm font-normal text-slate-600 ml-2">
+                ({filteredPrototypes.length})
+              </span>
+            </h2>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {prototypes.map((prototype) => (
+            {filteredPrototypes.map((prototype) => (
               <PrototypeCard 
                 key={prototype.slug} 
                 prototype={prototype} 
               />
             ))}
           </div>
-        </div>
-
-        {/* Compact Categories */}
-        <div className="mb-6">
-          <h3 className="text-lg font-semibold text-slate-800 mb-3">Categories</h3>
-          <div className="flex flex-wrap gap-2">
-            {categories.map((category) => (
-              <Badge 
-                key={category}
-                variant="secondary" 
-                className="px-3 py-1 text-sm bg-white border-slate-200 text-slate-700"
+          
+          {filteredPrototypes.length === 0 && (
+            <div className="text-center py-12">
+              <p className="text-slate-500">No prototypes found in this category.</p>
+              <button 
+                onClick={() => setSelectedCategory(null)}
+                className="text-blue-600 hover:text-blue-700 mt-2 text-sm"
               >
-                {category}
-              </Badge>
-            ))}
-          </div>
+                View all prototypes
+              </button>
+            </div>
+          )}
         </div>
 
         {/* Compact How to Use */}
