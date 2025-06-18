@@ -1,13 +1,13 @@
 import { notFound } from 'next/navigation'
-import { MDXRemote } from 'next-mdx-remote/rsc'
 import { getPrototype } from '@/content/config/prototypes'
 import { getPrototypeContent } from '@/lib/content'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
+import { Badge } from '@/components/ui/badge'  
 import { Button } from '@/components/ui/button'
 import { ExternalLink, Calendar, Tag, ChevronLeft, Users } from 'lucide-react'
 import { getCategoryIcon, getStatusColor } from '@/lib/utils'
 import { TeamsIcon } from '@/components/ui/teams-icon'
+import { ContextLayout } from '@/components/showcase/ContextLayout'
 import Link from 'next/link'
 
 interface ShowcasePageProps {
@@ -133,14 +133,7 @@ export default async function ShowcasePage({ params }: ShowcasePageProps) {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Content */}
           <div className="lg:col-span-2 space-y-6">
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-xl text-slate-800">Project Documentation</CardTitle>
-              </CardHeader>
-              <CardContent className="prose max-w-none">
-                <MDXRemote source={content.content} />
-              </CardContent>
-            </Card>
+            <ContextLayout content={content} />
           </div>
 
           {/* Prototype Preview */}
