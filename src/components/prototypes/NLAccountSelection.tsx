@@ -8,7 +8,7 @@ import { Label } from "makocn"
 import { AlertBanner } from "makocn"
 import { Separator } from "makocn"
 
-import { AlertTriangle, Search, Check, ChevronDown } from "lucide-react"
+import { AlertTriangle, Search, Check } from "lucide-react"
 
 const NLAccountSelection = () => {
   const [selectedAccountType, setSelectedAccountType] = useState<string>("")

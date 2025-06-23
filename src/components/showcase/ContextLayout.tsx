@@ -120,12 +120,12 @@ function parseContentIntoSections(content: string): ParsedContent {
 export async function ContextLayout({ content }: ContextLayoutProps) {
   const parsedContent = parseContentIntoSections(content.content)
   
-  // Serialize all MDX content on the server
+  // Serialize all MDX content on the server, handle empty content
   const renderedContent = {
-    overview: await serialize(parsedContent.overview.join('\n')),
-    userExperience: await serialize(parsedContent.userExperience.join('\n')),
-    technical: await serialize(parsedContent.technical.join('\n')),
-    review: await serialize(parsedContent.review.join('\n'))
+    overview: await serialize(parsedContent.overview.join('\n') || ''),
+    userExperience: await serialize(parsedContent.userExperience.join('\n') || ''),
+    technical: await serialize(parsedContent.technical.join('\n') || ''),
+    review: await serialize(parsedContent.review.join('\n') || '')
   }
 
   return <ContextLayoutClient renderedContent={renderedContent} />

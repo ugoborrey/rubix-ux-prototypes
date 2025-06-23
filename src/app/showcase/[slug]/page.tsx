@@ -3,6 +3,9 @@ import { getPrototype } from '@/content/config/prototypes'
 import { getPrototypeContent } from '@/lib/content'
 import { ShowcasePageClient } from '@/components/showcase/ShowcasePageClient'
 
+// Disable static generation for showcase pages since they use client-side MDX rendering
+export const dynamic = 'force-dynamic'
+
 interface ShowcasePageProps {
   params: Promise<{
     slug: string

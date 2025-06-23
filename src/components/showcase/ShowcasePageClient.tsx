@@ -7,13 +7,12 @@ import { getCategoryIcon, getStatusColor } from '@/lib/utils'
 import { TeamsIcon } from '@/components/ui/teams-icon'
 import { ContextLayout } from '@/components/showcase/ContextLayout'
 import Link from 'next/link'
-import { PrototypeMetadata } from '@/lib/types'
-import { MDXRemoteSerializeResult } from 'next-mdx-remote'
+import { PrototypeMetadata, PrototypeFrontmatter } from '@/lib/types'
 
 interface ShowcasePageClientProps {
   prototype: PrototypeMetadata
   content: {
-    frontmatter: any
+    frontmatter: PrototypeFrontmatter
     content: string
   }
 }
