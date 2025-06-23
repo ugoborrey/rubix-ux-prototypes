@@ -3,6 +3,7 @@
 import { prototypes } from '@/content/config/prototypes'
 import PrototypeCard from '@/components/showcase/PrototypeCard'
 import { Badge } from '@/components/ui/badge'
+import { Button } from 'makocn'
 import { useState } from 'react'
 
 export default function HomePage() {
@@ -98,12 +99,13 @@ export default function HomePage() {
           {filteredPrototypes.length === 0 && (
             <div className="text-center py-12">
               <p className="text-slate-500">No prototypes found in this category.</p>
-              <button 
+              <Button 
                 onClick={() => setSelectedCategory(null)}
                 className="text-blue-600 hover:text-blue-700 mt-2 text-sm"
+                variant="ghost"
               >
                 View all prototypes
-              </button>
+              </Button>
             </div>
           )}
         </div>

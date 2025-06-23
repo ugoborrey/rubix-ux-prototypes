@@ -1,7 +1,6 @@
-import { MDXRemote } from 'next-mdx-remote/rsc'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { serialize } from 'next-mdx-remote/serialize'
 import { PrototypeFrontmatter } from '@/lib/types'
-import { ContextTabs } from './ContextTabs'
+import { ContextLayoutClient } from './ContextLayoutClient'
 
 interface ContextLayoutProps {
   content: {
@@ -121,22 +120,13 @@ function parseContentIntoSections(content: string): ParsedContent {
 export async function ContextLayout({ content }: ContextLayoutProps) {
   const parsedContent = parseContentIntoSections(content.content)
   
-  // Pre-render all MDX content on the server
+  // Serialize all MDX content on the server
   const renderedContent = {
-    overview: <MDXRemote source={parsedContent.overview.join('\n')} />,
-    userExperience: <MDXRemote source={parsedContent.userExperience.join('\n')} />,
-    technical: <MDXRemote source={parsedContent.technical.join('\n')} />,
-    review: <MDXRemote source={parsedContent.review.join('\n')} />
+    overview: await serialize(parsedContent.overview.join('\n')),
+    userExperience: await serialize(parsedContent.userExperience.join('\n')),
+    technical: await serialize(parsedContent.technical.join('\n')),
+    review: await serialize(parsedContent.review.join('\n'))
   }
 
-  return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="text-xl text-slate-800">Project Documentation</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <ContextTabs renderedContent={renderedContent} />
-      </CardContent>
-    </Card>
-  )
+  return <ContextLayoutClient renderedContent={renderedContent} />
 } 

@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Button } from 'makocn'
+import { Card, CardContent, CardHeader, CardTitle } from 'makocn'
 import { ExternalLink, Calendar, Tag, Eye } from 'lucide-react'
 import { PrototypeMetadata } from '@/lib/types'
 import { getCategoryIcon, getStatusColor } from '@/lib/utils'
@@ -54,7 +54,7 @@ export default function PrototypeCard({ prototype }: PrototypeCardProps) {
               <Button
                 size="sm"
                 variant="outline"
-                className="bg-white border-[#6264A7] text-[#6264A7] hover:bg-[#6264A7] hover:text-white text-xs transition-colors"
+                className="text-xs"
                 asChild
               >
                 <a href={prototype.teamsLink} target="_blank" rel="noopener noreferrer">
@@ -122,30 +122,17 @@ export default function PrototypeCard({ prototype }: PrototypeCardProps) {
 
         {/* Actions */}
         <div className="flex gap-2 pt-2">
-          <Button 
-            size="sm" 
-            className={`flex-1 ${
-              isReadyForReview 
-                ? 'bg-green-700 hover:bg-green-800 text-white shadow-md' 
-                : 'bg-blue-600 hover:bg-blue-700 text-white'
-            }`}
-            asChild
-          >
-            <Link href={`/showcase/${prototype.slug}`}>
+          <Link href={`/showcase/${prototype.slug}`} className="flex-1">
+            <Button className="w-full">
               {isReadyForReview ? 'Review Now' : 'View Context'}
-            </Link>
-          </Button>
-          <Button 
-            size="sm" 
-            variant="outline"
-            className="border-slate-300 text-slate-700 hover:bg-slate-50"
-            asChild
-          >
-            <Link href={`/demo/${prototype.slug}`}>
+            </Button>
+          </Link>
+          <Link href={`/demo/${prototype.slug}`}>
+            <Button variant="outline">
               <ExternalLink className="w-3 h-3 mr-1" />
               Demo
-            </Link>
-          </Button>
+            </Button>
+          </Link>
         </div>
       </CardContent>
     </Card>

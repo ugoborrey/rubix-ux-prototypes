@@ -114,7 +114,18 @@ const config: Config = {
           accent: '#17D079',     // green-500
           danger: '#E55A4E',     // red-500
           info: '#7463F1',       // purple-500
+        },
+        
+        // Makocn library theme values
+        primary: '#2F8DDA', // Your branded blue for bg-primary
+        secondary: {
+          DEFAULT: '#64748B',
+          foreground: '#ffffff'
         }
+      },
+      // Makocn library border radius overrides
+      borderRadius: {
+        lg: '4px', // Your custom rounded-lg value
       },
     },
   },
