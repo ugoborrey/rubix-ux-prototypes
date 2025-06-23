@@ -51,17 +51,15 @@ export default function PrototypeCard({ prototype }: PrototypeCardProps) {
               <span className="text-sm font-medium text-green-800">Ready for stakeholder review</span>
             </div>
             {prototype.teamsLink && (
-              <Button
-                size="sm"
-                variant="outline"
-                className="text-xs"
-                asChild
-              >
-                <a href={prototype.teamsLink} target="_blank" rel="noopener noreferrer">
-                  <TeamsIcon className="mr-1" size={12} />
-                  Join Teams Discussion
-                </a>
-              </Button>
+              <a href={prototype.teamsLink} target="_blank" rel="noopener noreferrer" className="inline-block">
+                <Button 
+                  variant="outline" 
+                  leadingIcon={<TeamsIcon size={16} />}
+                  className="bg-white border-blue-200 text-blue-700 hover:bg-blue-50 hover:border-blue-300 transition-all duration-200 shadow-sm hover:shadow-md"
+                >
+                  Join Discussion
+                </Button>
+              </a>
             )}
           </div>
         )}

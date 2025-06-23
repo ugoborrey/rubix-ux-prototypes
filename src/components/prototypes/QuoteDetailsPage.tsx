@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useMemo } from 'react'
+import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from 'makocn'
 import { Badge } from '@/components/ui/badge'
@@ -564,7 +565,7 @@ function ProductCard({ product, originalProduct, isLast, onSelectionChange, onQu
       {/* Product Image */}
       <div className="w-18 h-18 bg-slate-100 border border-slate-200 rounded-lg flex items-center justify-center overflow-hidden">
         {product.image ? (
-          <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
+          <Image src={product.image} alt={product.name} className="w-full h-full object-cover" width={72} height={72} />
         ) : (
           <div className="w-8 h-8 bg-slate-300 rounded"></div>
         )}

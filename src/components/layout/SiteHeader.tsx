@@ -42,7 +42,6 @@ export default function SiteHeader({
       <div className="relative">
         <Button
           variant="outline"
-          size="sm"
           className="border-slate-200 text-slate-700 hover:bg-slate-50"
           onClick={() => {
             // Simple click handler - copy context URL by default

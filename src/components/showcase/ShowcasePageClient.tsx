@@ -64,44 +64,38 @@ export function ShowcasePageClient({ prototype, content }: ShowcasePageClientPro
             
             {/* Action Buttons */}
             <div className="flex gap-3">
-              {isReadyForReview && prototype.teamsLink && (
-                <Button 
-                  size="lg"
-                  variant="outline"
-                  className="bg-white border-[#6264A7] text-[#6264A7] hover:bg-[#6264A7] hover:text-white transition-colors"
-                  asChild
-                >
-                  <a href={prototype.teamsLink} target="_blank" rel="noopener noreferrer">
-                    <TeamsIcon className="mr-2" size={20} />
-                    Join Discussion
-                  </a>
-                </Button>
-              )}
-              <Button 
-                size="lg"
-                variant="outline"
-                className="border-slate-300 text-slate-700 hover:bg-slate-50"
-                asChild
-              >
-                <Link href={`/demo/${prototype.slug}`}>
-                  <ExternalLink className="w-5 h-5 mr-2" />
+              <Link href={`/demo/${prototype.slug}`}>
+                <Button leadingIcon={<ExternalLink size={16} />}>
                   View Full Demo
-                </Link>
-              </Button>
+                </Button>
+              </Link>
             </div>
           </div>
           
           {/* Ready for Review Banner */}
           {isReadyForReview && (
             <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
-              <div className="flex items-center gap-3">
-                <Users className="w-5 h-5 text-green-600" />
-                <div>
-                  <h3 className="font-semibold text-green-800">Ready for Stakeholder Review</h3>
-                  <p className="text-sm text-green-700 mt-1">
-                    This prototype is ready for feedback. {prototype.teamsLink ? 'Join the Teams discussion to share your thoughts.' : 'Contact the UX team to provide feedback.'}
-                  </p>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <Users className="w-5 h-5 text-green-600" />
+                  <div>
+                    <h3 className="font-semibold text-green-800">Ready for Stakeholder Review</h3>
+                    <p className="text-sm text-green-700 mt-1">
+                      This prototype is ready for feedback. {prototype.teamsLink ? 'Join the Teams discussion to share your thoughts.' : 'Contact the UX team to provide feedback.'}
+                    </p>
+                  </div>
                 </div>
+                {prototype.teamsLink && (
+                  <a href={prototype.teamsLink} target="_blank" rel="noopener noreferrer" className="inline-block">
+                    <Button 
+                      variant="outline"
+                      leadingIcon={<TeamsIcon size={16} />}
+                      className="bg-white border-[#6264A7] text-[#6264A7] hover:bg-[#6264A7] hover:text-white transition-colors"
+                    >
+                      Join Discussion
+                    </Button>
+                  </a>
+                )}
               </div>
             </div>
           )}
@@ -146,22 +140,20 @@ export function ShowcasePageClient({ prototype, content }: ShowcasePageClientPro
                 </div>
                 <div className="space-y-2 mt-4">
                   <Link href={`/demo/${prototype.slug}`}>
-                    <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">
-                      <ExternalLink className="w-4 h-4 mr-2" />
+                    <Button leadingIcon={<ExternalLink size={16} />} className="w-full">
                       Open Full Demo
                     </Button>
                   </Link>
                   {isReadyForReview && prototype.teamsLink && (
-                    <Button 
-                      variant="outline"
-                      className="w-full border-[#6264A7] text-[#6264A7] hover:bg-[#6264A7]/10"
-                      asChild
-                    >
-                      <a href={prototype.teamsLink} target="_blank" rel="noopener noreferrer">
-                        <TeamsIcon className="mr-2" size={16} />
+                    <a href={prototype.teamsLink} target="_blank" rel="noopener noreferrer" className="inline-block w-full mt-3">
+                      <Button 
+                        variant="outline"
+                        leadingIcon={<TeamsIcon size={16} />}
+                        className="w-full border-[#6264A7] text-[#6264A7] hover:bg-[#6264A7]/10"
+                      >
                         Join Teams Discussion
-                      </a>
-                    </Button>
+                      </Button>
+                    </a>
                   )}
                 </div>
               </CardContent>
